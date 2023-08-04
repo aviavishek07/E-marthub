@@ -13,8 +13,6 @@ maven_build:
   image: maven:3-jdk-17
   stage: package
   script: mvn clean package
-  tags:
-    - cicd-demo
   only:
     - master
     - v1.0.0
@@ -30,8 +28,6 @@ maven_build:
 test_coverage:
   image: maven:3-jdk-17
   stage: test
-  tags:
-    - cicd-demo
   only:
     - master
     - v1.0.0
