@@ -13,6 +13,8 @@ maven_build:
   image: maven:3-jdk-17
   stage: package
   script: mvn clean package
+  tags:
+    - ci
   only:
     - master
     - v1.0.0
@@ -28,6 +30,8 @@ maven_build:
 test_coverage:
   image: maven:3-jdk-17
   stage: test
+  tags:
+    - ci
   only:
     - master
     - v1.0.0
@@ -45,6 +49,8 @@ test_coverage:
 java_lint:
   image: maven:3-jdk-17
   stage: java_quality
+  tags:
+    - ci
   script:
     - mvn -Dmaven.repo.local=/root/.m2/repository clean install -DskipTests=true -B
     - mvn -Dmaven.repo.local=/root/.m2/repository pmd:check -B
