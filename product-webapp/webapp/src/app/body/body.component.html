@@ -1,0 +1,110 @@
+<!-- body.component.html -->
+<section class="seller-dashboard">
+   
+    <div class="add-product-container">
+      <div>
+        <label for="item">Item:</label>
+        <input id="item" type="text" #newItem>
+      </div>
+      <div>
+        <label for="category">Category:</label>
+        <input id="category" type="text" #newCategory>
+      </div>
+      <div>
+        <label for="subcategory">Subcategory:</label>
+        <input id="subcategory" type="text" #newSubcategory>
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <input id="description" type="text" #newDescription>
+      </div>
+      <button class="add-product-btn" (click)="addProduct(newItem.value, newCategory.value, newSubcategory.value, newDescription.value)">ADD PRODUCT</button>
+    </div>
+    <div class="search-container">
+      <label for="categorySearch">Search by Category:</label>
+      <input id="categorySearch" type="text" [(ngModel)]="searchCategory" placeholder="Enter category">
+    </div>
+    <!-- <div class="search-container">
+      <label for="subcategorySearch">Search by Subcategory:</label>
+      <input id="subcategorySearch" type="text" [(ngModel)]="searchSubcategory" placeholder="Enter subcategory">
+    </div>
+    <div class="search-container">
+      <label for="descriptionSearch">Search by Description:</label>
+      <input id="descriptionSearch" type="text" [(ngModel)]="searchDescription" placeholder="Enter description">
+    </div> -->
+    <!-- <div class="product-container">
+      <div class="product" *ngFor="let product of products | filter: searchCategory: searchSubcategory: searchDescription; let i = index">
+        <div class="product-info">
+          <div class="product-item">{{product.item}}</div>
+          <div class="product-category">{{product.category}}</div>
+          <div class="product-subcategory">{{product.subcategory}}</div>
+          <div class="product-description">{{product.description}}</div>
+        </div>
+        <div class="product-actions">
+          <button class="edit-btn" (click)="editProduct(i,product)">Edit</button>
+          <button class="delete-btn" (click)="deleteProduct(i)">Delete</button>
+        </div>
+      </div>
+    </div> -->
+
+    
+      <div class="edit-modal" [class.active]="showEditModal">
+        <div class="edit-modal-content">
+          <h3>Edit Product</h3>
+          <div>
+            <label for="editItem">Item:</label>
+            <input id="editItem" type="text" [(ngModel)]="editedProduct.item">
+          </div>
+          <div>
+            <label for="editCategory">Category:</label>
+            <input id="editCategory" type="text" [(ngModel)]="editedProduct.category">
+          </div>
+          <div>
+            <label for="editSubcategory">Subcategory:</label>
+            <input id="editSubcategory" type="text" [(ngModel)]="editedProduct.subcategory">
+          </div>
+          <div>
+            <label for="editDescription">Description:</label>
+            <input id="editDescription" type="text" [(ngModel)]="editedProduct.description">
+          </div>
+          <button (click)="saveEdit()">Save</button>
+          <button (click)="cancelEdit()">Cancel</button>
+        </div>
+      </div>
+
+  </section>
+  <section class="product-list">
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Category</th>
+        <th>Subcategory</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Buyer</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let product of filterProducts(); let i = index">
+        <td>{{ product.item }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.subcategory }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.date }}</td>
+        <td>{{ product.time }}</td>
+        <td>{{ product.buyer }}</td>
+        <td class="status" (click)="toggleStatus(product)">{{ product.status }}</td>
+        <td>
+          <button (click)="editProductModal(product)">Edit</button>
+          <button (click)="deleteProduct(i)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </section>
+  
+  
+
+  
+  
+ <!-- Edit Product Modal -->
