@@ -208,7 +208,7 @@ body {
 
 
 .search-autocomplete {
-  
+
   position: relative;
   display: inline-block;
   width: 200px; 
@@ -252,6 +252,23 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
+
+.discounted-price {
+  color: #e74c3c; 
+  font-weight: bold;
+}
+
+.offer-details {
+  color: #27ae60; 
+  margin-top: 5px;
+}
+
+.price-gap {
+  margin: 0 5px; 
+}
+
+
 
 
 
