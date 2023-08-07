@@ -1,0 +1,171 @@
+<section class="header">
+  <div class="logo">
+    <h1>e-martHub</h1>
+  </div>
+  <div class="actions">
+    
+    <div class="search-autocomplete">
+      <input type="text" placeholder="Search" (input)="onSearchInput($event)">
+      <ul class="autocomplete-list" *ngIf="showAutocomplete">
+        <li *ngFor="let suggestion of searchSuggestions" (click)="selectSuggestion(suggestion)">{{ suggestion }}</li>
+      </ul>
+    </div>
+    <button class="login-button">Login</button>
+    <span class="notification-icon">🔔</span>
+    <span class="cart-icon">🛒</span>
+  </div>
+  
+</section>
+
+
+
+<section class="carousel-container">
+  <carousel class="carousel-horizontal" [itemsPerSlide]="3">
+    <slide *ngFor="let product of offersAndDealsProducts">
+      <div class="carousel-slide">
+        <div class="carousel-content">
+          <div class="carousel-image">
+            <img [src]="product.imageUrl" alt="Product Offer">
+          </div>
+          <div class="carousel-details">
+            <h3>{{ product.name }}</h3>
+            <p>Brand: {{ product.brand }}</p>
+            <p>Price: {{ product.price }}</p>
+          </div>
+        </div>
+      </div>
+    </slide>
+  </carousel>
+</section>
+
+<section class="trending-products">
+  <h2>Trending Products</h2>
+  <div class="product" *ngFor="let product of trendingProducts" (mouseover)="onProductHover(product)">
+    <div class="carousel-content">
+      <div class="carousel-image">
+        <img [src]="product.imageUrl" alt="Product Offer" [class.visible]="hoveredProduct === product">
+      </div>
+      <div class="carousel-details">
+        <h3>{{ product.name }}</h3>
+        <p>Brand: {{ product.brand }}</p>
+        <p>Price: {{ product.price }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="categories">
+  <a href="#">Home & Kitchen Essentials</a>
+  <a href="#">Beauty</a>
+  <a href="#">Food</a>
+  <a href="#">Toys & More</a>
+  <a href="#">Best of Electronics</a>
+</section>
+
+<!-- ... (previous HTML code) -->
+
+<section class="products">
+<div class="category">
+  <h2>Home & Kitchen Essentials</h2>
+  <button (click)="toggleShowAll('homeAndKitchen')">View All</button>
+  <div class="product" *ngFor="let product of getDisplayedProducts('homeAndKitchen')">
+    <img [src]="product.imageUrl" alt="Product Image">
+    <h3>{{ product.name }}</h3>
+    <p>Brand: {{ product.brand }}</p>
+    <p>Price: <del>{{ product.price }}</del> <span class="price-gap"> Dis.Price:  </span><span class="discounted-price">{{ product.discountedPrice }}</span></p>
+    <p class="offer-details">{{ product.offerPercentage }}% off</p>
+  </div>
+</div>
+
+<div class="category">
+  <h2>Beauty</h2>
+  <button (click)="toggleShowAll('beauty')">View All</button>
+  <div class="product" *ngFor="let product of getDisplayedProducts('beauty')">
+    <img [src]="product.imageUrl" alt="Product Image">
+    <h3>{{ product.name }}</h3>
+    <p>Brand: {{ product.brand }}</p>
+    <p>Price: <del>{{ product.price }}</del> <span class="price-gap"> Dis.Price:  </span><span class="discounted-price">{{ product.discountedPrice }}</span></p>
+    <p class="offer-details">{{ product.offerPercentage }}% off</p>
+  </div>
+</div>
+
+<div class="category">
+  <h2>Food</h2>
+  <button (click)="toggleShowAll('food')">View All</button>
+  <div class="product" *ngFor="let product of getDisplayedProducts('food')">
+    <img [src]="product.imageUrl" alt="Product Image">
+    <h3>{{ product.name }}</h3>
+    <p>Brand: {{ product.brand }}</p>
+    <p>Price: <del>{{ product.price }}</del> <span class="price-gap"> Dis.Price:  </span><span class="discounted-price">{{ product.discountedPrice }}</span></p>
+    <p class="offer-details">{{ product.offerPercentage }}% off</p>
+  </div>
+</div>
+
+<div class="category">
+  <h2>Toys & More</h2>
+  <button (click)="toggleShowAll('toysAndMore')">View All</button>
+  <div class="product" *ngFor="let product of getDisplayedProducts('toysAndMore')">
+    <img [src]="product.imageUrl" alt="Product Image">
+    <h3>{{ product.name }}</h3>
+    <p>Brand: {{ product.brand }}</p>
+    <p>Price: <del>{{ product.price }}</del><span class="price-gap"> Dis.Price:  </span> <span class="discounted-price">{{ product.discountedPrice }}</span></p>
+    <p class="offer-details">{{ product.offerPercentage }}% off</p>
+  </div>
+</div>
+
+<div class="category">
+  <h2>Best of Electronics</h2>
+  <button (click)="toggleShowAll('bestOfElectronics')">View All</button>
+  <div class="product" *ngFor="let product of getDisplayedProducts('bestOfElectronics')">
+    <img [src]="product.imageUrl" alt="Product Image">
+    <h3>{{ product.name }}</h3>
+    <p>Brand: {{ product.brand }}</p>
+    <p>Price: <del>{{ product.price }}</del> <span class="price-gap"> Dis.Price:  </span><span class="discounted-price">{{ product.discountedPrice }}</span></p>
+    <p class="offer-details">{{ product.offerPercentage }}% off</p>
+  </div>
+</div>
+</section>
+
+
+
+
+<section class="footer">
+  <!-- About footer section -->
+  <div class="footer-section">
+    <h3>About</h3>
+    <a href="#">Contact Us</a><br>
+    <a href="#">About Us</a><br>
+    <a href="#">Corporate Information</a>
+  </div>
+
+  <!-- Help footer section -->
+  <div class="footer-section">
+    <h3>Help</h3>
+    <a href="#">Payments</a><br>
+    <a href="#">Shipping</a><br>
+    <a href="#">Cancellation and Returns</a><br>
+    <a href="#">FAQ</a><br>
+    <a href="#">Infringement</a>
+  </div>
+
+  <!-- Consumer Policy footer section -->
+  <div class="footer-section">
+    <h3>Consumer Policy</h3>
+    <a href="#">Cancellation and Returns</a><br>
+    <a href="#">Terms of Use</a>
+  </div>
+
+  <!-- Social footer section -->
+  <div class="footer-section">
+    <h3>Social</h3>
+    <div class="social-icons">
+      <a href="#"><span class="icon">📘</span></a><br>
+      <a href="#"><span class="icon">🐦</span></a><br>
+      <a href="#"><span class="icon">📺</span></a>
+    </div>
+  </div>
+</section>
+
+
