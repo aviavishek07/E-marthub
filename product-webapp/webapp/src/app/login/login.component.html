@@ -1,0 +1,32 @@
+<body>
+  <div class="login">
+    <div class="container">
+      <div class="center-wrapper">
+        <div class="form" style="width: 100%;">
+          <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm)">
+            <h2 class="title">Welcome Again</h2>
+            <!-- Form input fields -->
+            <div class="form-group mb-3">
+              <input type="email" class="form-control" formControlName="mailId" placeholder="Email">
+              <small *ngIf="loginForm.get('mailId')?.touched && loginForm.get('mailId')?.hasError('required')"
+                class="text-center">Email is Required</small>
+            </div>
+            <div class="form-group mb-3">
+              <input type="password" class="form-control" formControlName="password" placeholder="Password">
+              <small *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')"
+                class="text-center">Password is Required</small>
+            </div>
+            <div class="text-center but">
+              <button mat-raised-button style="background-color: #090580; color: white; width: 20%;"
+                [disabled]="loginForm.invalid">Login</button>
+            </div>
+          </form>
+          <div class="text-center mb-3 text">
+            <span style="margin-right: 10px; color: white;">New to e-martHub?</span><a routerLink="/register"
+              style="color: #faf0d7;"> Register</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

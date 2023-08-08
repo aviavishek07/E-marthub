@@ -8,6 +8,8 @@ interface Product {
   imageUrl: string;
   isLimitedTimeOffer?: boolean;
   countdown?: Date;
+  offerPercentage?: number; 
+  discountedPrice?: number; 
 }
 
 interface CategoryProductMap {
@@ -129,19 +131,25 @@ export class HomeComponent implements OnInit {
       name: 'clocks',
       price: 10,
       brand: "c",
-      imageUrl:'assets/images/product1.jpg'
+      imageUrl:'assets/images/product1.jpg',
+      offerPercentage: 22,
+      discountedPrice:8
     },
     {
       name: 'candles',
       price: 20,
       brand: "b",
-      imageUrl: 'assets/images/product2.jpg'
+      imageUrl: 'assets/images/product2.jpg',
+      offerPercentage: 24,
+      discountedPrice:15
     },
     {
       name: 'cookers',
       price: 15,
       brand: "a",
-      imageUrl: 'assets/images/product3.jpg'
+      imageUrl: 'assets/images/product3.jpg',
+      offerPercentage: 25,
+      discountedPrice:11
     },
     // Add more products 
   ];
@@ -151,19 +159,25 @@ export class HomeComponent implements OnInit {
       name: 'Lipstics',
       price: 25,
       brand: "b",
-      imageUrl: 'assets/images/product4.jpg'
+      imageUrl: 'assets/images/product4.jpg',
+      offerPercentage: 20,
+      discountedPrice:20
     },
     {
       name: 'Ponds Baby Powder',
       price: 30,
       brand: "d",
-      imageUrl: 'assets/images/product5.jpg'
+      imageUrl: 'assets/images/product5.jpg',
+      offerPercentage: 26,
+      discountedPrice:25
     },
     {
       name: 'Himalaya FaceWash',
       price: 18,
       brand: "a",
-      imageUrl: 'assets/images/product6.jpg'
+      imageUrl: 'assets/images/product6.jpg',
+      offerPercentage: 22,
+      discountedPrice:15
     },
     // Add more products 
   ];
@@ -173,19 +187,25 @@ export class HomeComponent implements OnInit {
       name: 'Dairy Milk Chocklate',
       price: 12,
       brand: "d",
-      imageUrl: 'assets/images/product7.jpg'
+      imageUrl: 'assets/images/product7.jpg',
+      offerPercentage: 28,
+      discountedPrice:8
     },
     {
       name: 'Nuts',
       price: 8,
       brand: "d",
-      imageUrl: 'assets/images/product8.jpg'
+      imageUrl: 'assets/images/product8.jpg',
+      offerPercentage: 20,
+      discountedPrice:6
     },
     {
       name: 'Almonds',
       price: 22,
       brand: "c",
-      imageUrl: 'assets/images/product9.jpg'
+      imageUrl: 'assets/images/product9.jpg',
+      offerPercentage: 25,
+      discountedPrice:17
     },
     // Add more products 
   ];
@@ -195,19 +215,25 @@ export class HomeComponent implements OnInit {
       name: 'teddy',
       price: 40,
       brand: "a",
-      imageUrl: 'assets/images/product10.jpg'
+      imageUrl: 'assets/images/product10.jpg',
+      offerPercentage: 25,
+      discountedPrice:35
     },
     {
       name: 'Cute Teddy',
       price: 35,
       brand: "d",
-      imageUrl: 'assets/images/product11.jpg'
+      imageUrl: 'assets/images/product11.jpg',
+      offerPercentage: 20,
+      discountedPrice:30
     },
     {
       name: 'Baby Teddy',
       price: 28,
       brand: "c",
-      imageUrl: 'assets/images/product12.jpg'
+      imageUrl: 'assets/images/product12.jpg',
+      offerPercentage: 25,
+      discountedPrice:26
     },
     // Add more products 
   ];
@@ -217,19 +243,25 @@ export class HomeComponent implements OnInit {
       name: 'Laptops',
       price: 50,
       brand: "a",
-      imageUrl: 'assets/images/product14.jpg'
+      imageUrl: 'assets/images/product14.jpg',
+      offerPercentage: 24,
+      discountedPrice:44
     },
     {
       name: 'Watches',
       price: 60,
       brand: "b",
-      imageUrl: 'assets/images/product15.jpg'
+      imageUrl: 'assets/images/product15.jpg',
+      offerPercentage: 24,
+      discountedPrice:50
     },
     {
       name: 'Smart Watches',
       price: 55,
       brand: "d",
-      imageUrl: 'assets/images/product16.jpg'
+      imageUrl: 'assets/images/product16.jpg',
+      offerPercentage: 24,
+      discountedPrice:45
     },
     // Add more products 
   ];
