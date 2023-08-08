@@ -1,171 +1,241 @@
 <section class="header">
   <div class="logo">
-    <h1>e-martHub</h1>
+   
+    <img src="assets/images/logo_transparent.png" alt="Logo">
   </div>
   <div class="actions">
-    
-    <div class="search-autocomplete">
-      <input type="text" placeholder="Search" (input)="onSearchInput($event)">
-      <ul class="autocomplete-list" *ngIf="showAutocomplete">
-        <li *ngFor="let suggestion of searchSuggestions" (click)="selectSuggestion(suggestion)">{{ suggestion }}</li>
-      </ul>
-    </div>
-    <button class="login-button">Login</button>
-    <span class="notification-icon">🔔</span>
-    <span class="cart-icon">🛒</span>
+   
   </div>
+    <div class="actions">
+      
+      <div class="search-autocomplete">
+        <input type="text" placeholder="Search" (input)="onSearchInput($event)">
+        <ul class="autocomplete-list" *ngIf="showAutocomplete">
+          <li *ngFor="let suggestion of searchSuggestions" (click)="selectSuggestion(suggestion)">{{ suggestion }}</li>
+        </ul>
+      </div>
+      <button class="login-button">Login</button>
+      <span class="notification-icon">🔔</span>
+      <span class="cart-icon">🛒</span>
+    </div>
+    
+  </section>
+
   
+
+  <section class="banner-carousel">
+    <ngx-slick-carousel class="carousel" [config]="carouselConfig">
+      <div class="carousel-image" *ngFor="let banner of banners">
+        <img [src]="banner.imageUrl" alt="Banner" />
+      </div>
+      <div class="carousel-image" *ngFor="let banner of banners">
+        <img [src]="banner.imageUrl" alt="Banner" />
+      </div>
+      <div class="carousel-image" *ngFor="let banner of banners">
+        <img [src]="banner.imageUrl" alt="Banner" />
+      </div>
+    </ngx-slick-carousel>
+
+    <div class="offers-and-deals-modal" *ngIf="showOffersAndDeals">
+      <div class="modal-content">
+        <!-- Add your offers and deals content here -->
+        <button class="close-button" (click)="closeOffersAndDealsPopup()">Close</button>
+      </div>
+    </div>
+  </section>
+
+ 
+  
+  
+<!-- Attractive User Instruction -->
+
+<section class="instruction">
+  <div class="background-decoration"></div>
+  <div class="left-decoration"></div>
+  <div class="instruction-content">
+    <h2>Welcome to e-martHub!</h2>
+    <p>Unleash the World of Shopping Delights</p>
+    <p><strong>Discover Trends, Shop Smart, Repeat Joy!</strong></p>
+    <ul>
+      <li><span class="highlight"><strong>Hover</strong></span> over products for a closer look.</li>
+      <li><span class="highlight"><strong>Click</strong></span> on products to learn more.</li>
+      <li><span class="highlight"><strong>Use the search bar</strong></span> to find your desired items.</li>
+    </ul>
+    <p class="start-shopping">Start your shopping journey now!</p>
+    <button class="explore-button">Explore Now</button>
+  </div>
+  <div class="right-decoration"></div>
 </section>
 
 
 
-<section class="carousel-container">
-  <carousel class="carousel-horizontal" [itemsPerSlide]="3">
-    <slide *ngFor="let product of offersAndDealsProducts">
-      <div class="carousel-slide">
-        <div class="carousel-content">
-          <div class="carousel-image">
-            <img [src]="product.imageUrl" alt="Product Offer">
-          </div>
-          <div class="carousel-details">
-            <h3>{{ product.name }}</h3>
-            <p>Brand: {{ product.brand }}</p>
-            <p>Price: {{ product.price }}</p>
-          </div>
+
+  <section class="trending-products">
+    <div class="animation-above"></div>
+    <div class="trending-title">
+      <h2>Trending Products</h2>
+    </div>
+    <div class="animation-below"></div>
+    
+    <div class="product" *ngFor="let product of trendingProducts">
+      <div class="carousel-content">
+        <div class="carousel-image">
+          <img [src]="product.imageUrl" alt="Product Offer" [class.visible]="hoveredProduct === product">
+        </div>
+        <div class="carousel-details">
+          <h3>{{ product.name }}</h3>
+          <p>Brand: {{ product.brand }}</p>
+          <p>Price: {{ product.price }}</p>
         </div>
       </div>
-    </slide>
-  </carousel>
-</section>
-
-<section class="trending-products">
-  <h2>Trending Products</h2>
-  <div class="product" *ngFor="let product of trendingProducts" (mouseover)="onProductHover(product)">
-    <div class="carousel-content">
-      <div class="carousel-image">
-        <img [src]="product.imageUrl" alt="Product Offer" [class.visible]="hoveredProduct === product">
-      </div>
-      <div class="carousel-details">
-        <h3>{{ product.name }}</h3>
-        <p>Brand: {{ product.brand }}</p>
-        <p>Price: {{ product.price }}</p>
-      </div>
     </div>
+  </section>
+
+  <!-- Blockbuster Deals Section -->
+<section class="blockbuster-deals">
+  <div class="background-decoration"></div>
+  <div class="left-decoration"></div>
+  <div class="blockbuster-content">
+    <h2>Blockbuster Deals: Unbelievable Savings Await You!</h2>
+    <p>Get ready to be amazed by our Blockbuster Deals that bring you unbeatable savings on a wide range of products. At e-martHub, we believe that shopping should be an experience filled with excitement and value. Dive into our exclusive Blockbuster Deals and discover incredible offers that will leave you thrilled.</p>
+    <p class="explore-button-container"><a class="explore-button" href="#blockbuster-offers">Explore the Blockbuster Offers</a></p>
+    <p class="limited-time">Limited Time, Unlimited Savings</p>
+    <p>Act fast, because these deals won't last forever! Our Blockbuster Deals are available for a limited time only. Make the most of this golden opportunity to upgrade your lifestyle, enhance your collection, and enjoy incredible discounts. Whether you're shopping for yourself or looking for the perfect gift, our Blockbuster Deals have got you covered.</p>
+    <h3>How to Catch a Blockbuster Deal?</h3>
+    <ol>
+      <li><strong>Stay Tuned:</strong> Keep an eye on our website for the latest Blockbuster Deals. We're always updating our offerings to bring you the best of the best.</li>
+      <li><strong>Set Notifications:</strong> Don't want to miss out on a deal? Enable notifications so you're the first to know when a Blockbuster Deal drops.</li>
+      <li><strong>Act Swiftly:</strong> When you spot a deal you love, don't hesitate! These deals are in high demand, and the clock is ticking.</li>
+    </ol>
+    <p class="explore-button-container"><a class="explore-button" href="#blockbuster-offers">Start Saving Now</a></p>
   </div>
+  <div class="right-decoration"></div>
 </section>
+<!-- End Blockbuster Deals Section -->
+
+<!-- Add the rest of your HTML content here -->
 
 
 
-<section class="categories">
-  <a href="#">Home & Kitchen Essentials</a>
-  <a href="#">Beauty</a>
-  <a href="#">Food</a>
-  <a href="#">Toys & More</a>
-  <a href="#">Best of Electronics</a>
-</section>
 
-<!-- ... (previous HTML code) -->
+
+
+  
+  
+  
+  <section class="categories">
+    <a href="#">Home & Kitchen Essentials</a>
+    <a href="#">Beauty</a>
+    <a href="#">Food</a>
+    <a href="#">Toys & More</a>
+    <a href="#">Best of Electronics</a>
+  </section>
+  
+  <!-- ... (previous HTML code) -->
 
 <section class="products">
-<div class="category">
-  <h2>Home & Kitchen Essentials</h2>
-  <button (click)="toggleShowAll('homeAndKitchen')">View All</button>
-  <div class="product" *ngFor="let product of getDisplayedProducts('homeAndKitchen')">
-    <img [src]="product.imageUrl" alt="Product Image">
-    <h3>{{ product.name }}</h3>
-    <p>Brand: {{ product.brand }}</p>
-    <p>Price: <del>{{ product.price }}</del> <span class="price-gap"> Dis.Price:  </span><span class="discounted-price">{{ product.discountedPrice }}</span></p>
-    <p class="offer-details">{{ product.offerPercentage }}% off</p>
-  </div>
-</div>
-
-<div class="category">
-  <h2>Beauty</h2>
-  <button (click)="toggleShowAll('beauty')">View All</button>
-  <div class="product" *ngFor="let product of getDisplayedProducts('beauty')">
-    <img [src]="product.imageUrl" alt="Product Image">
-    <h3>{{ product.name }}</h3>
-    <p>Brand: {{ product.brand }}</p>
-    <p>Price: <del>{{ product.price }}</del> <span class="price-gap"> Dis.Price:  </span><span class="discounted-price">{{ product.discountedPrice }}</span></p>
-    <p class="offer-details">{{ product.offerPercentage }}% off</p>
-  </div>
-</div>
-
-<div class="category">
-  <h2>Food</h2>
-  <button (click)="toggleShowAll('food')">View All</button>
-  <div class="product" *ngFor="let product of getDisplayedProducts('food')">
-    <img [src]="product.imageUrl" alt="Product Image">
-    <h3>{{ product.name }}</h3>
-    <p>Brand: {{ product.brand }}</p>
-    <p>Price: <del>{{ product.price }}</del> <span class="price-gap"> Dis.Price:  </span><span class="discounted-price">{{ product.discountedPrice }}</span></p>
-    <p class="offer-details">{{ product.offerPercentage }}% off</p>
-  </div>
-</div>
-
-<div class="category">
-  <h2>Toys & More</h2>
-  <button (click)="toggleShowAll('toysAndMore')">View All</button>
-  <div class="product" *ngFor="let product of getDisplayedProducts('toysAndMore')">
-    <img [src]="product.imageUrl" alt="Product Image">
-    <h3>{{ product.name }}</h3>
-    <p>Brand: {{ product.brand }}</p>
-    <p>Price: <del>{{ product.price }}</del><span class="price-gap"> Dis.Price:  </span> <span class="discounted-price">{{ product.discountedPrice }}</span></p>
-    <p class="offer-details">{{ product.offerPercentage }}% off</p>
-  </div>
-</div>
-
-<div class="category">
-  <h2>Best of Electronics</h2>
-  <button (click)="toggleShowAll('bestOfElectronics')">View All</button>
-  <div class="product" *ngFor="let product of getDisplayedProducts('bestOfElectronics')">
-    <img [src]="product.imageUrl" alt="Product Image">
-    <h3>{{ product.name }}</h3>
-    <p>Brand: {{ product.brand }}</p>
-    <p>Price: <del>{{ product.price }}</del> <span class="price-gap"> Dis.Price:  </span><span class="discounted-price">{{ product.discountedPrice }}</span></p>
-    <p class="offer-details">{{ product.offerPercentage }}% off</p>
-  </div>
-</div>
-</section>
-
-
-
-
-<section class="footer">
-  <!-- About footer section -->
-  <div class="footer-section">
-    <h3>About</h3>
-    <a href="#">Contact Us</a><br>
-    <a href="#">About Us</a><br>
-    <a href="#">Corporate Information</a>
+   <div class="category">
+    <h2>Home & Kitchen Essentials</h2>
+    <button (click)="toggleShowAll('homeAndKitchen')">View All</button>
+    <div class="product" *ngFor="let product of getDisplayedProducts('homeAndKitchen')">
+      <!-- <a routerLink="/product/{{ product.id }}"> Add this line -->
+        <img [src]="product.imageUrl" alt="Product Image">
+        <h3>{{ product.name }}</h3>
+        <p>Brand: {{ product.brand }}</p>
+        <p>Price: <del>{{ product.price }}</del> <span class="price-gap"> Dis.Price:  </span><span class="discounted-price">{{ product.discountedPrice }}</span></p>
+        <p class="offer-details">{{ product.offerPercentage }}% off</p>
+      <!-- </a> Add this line -->
+    </div>
   </div>
 
-  <!-- Help footer section -->
-  <div class="footer-section">
-    <h3>Help</h3>
-    <a href="#">Payments</a><br>
-    <a href="#">Shipping</a><br>
-    <a href="#">Cancellation and Returns</a><br>
-    <a href="#">FAQ</a><br>
-    <a href="#">Infringement</a>
+  <div class="category">
+    <h2>Beauty</h2>
+    <button (click)="toggleShowAll('beauty')">View All</button>
+    <div class="product" *ngFor="let product of getDisplayedProducts('beauty')">
+      <img [src]="product.imageUrl" alt="Product Image">
+      <h3>{{ product.name }}</h3>
+      <p>Brand: {{ product.brand }}</p>
+      <p>Price: <del>{{ product.price }}</del> <span class="price-gap"> Dis.Price:  </span><span class="discounted-price">{{ product.discountedPrice }}</span></p>
+      <p class="offer-details">{{ product.offerPercentage }}% off</p>
+    </div>
   </div>
 
-  <!-- Consumer Policy footer section -->
-  <div class="footer-section">
-    <h3>Consumer Policy</h3>
-    <a href="#">Cancellation and Returns</a><br>
-    <a href="#">Terms of Use</a>
+  <div class="category">
+    <h2>Food</h2>
+    <button (click)="toggleShowAll('food')">View All</button>
+    <div class="product" *ngFor="let product of getDisplayedProducts('food')">
+      <img [src]="product.imageUrl" alt="Product Image">
+      <h3>{{ product.name }}</h3>
+      <p>Brand: {{ product.brand }}</p>
+      <p>Price: <del>{{ product.price }}</del> <span class="price-gap"> Dis.Price:  </span><span class="discounted-price">{{ product.discountedPrice }}</span></p>
+      <p class="offer-details">{{ product.offerPercentage }}% off</p>
+    </div>
   </div>
 
-  <!-- Social footer section -->
-  <div class="footer-section">
-    <h3>Social</h3>
-    <div class="social-icons">
-      <a href="#"><span class="icon">📘</span></a><br>
-      <a href="#"><span class="icon">🐦</span></a><br>
-      <a href="#"><span class="icon">📺</span></a>
+  <div class="category">
+    <h2>Toys & More</h2>
+    <button (click)="toggleShowAll('toysAndMore')">View All</button>
+    <div class="product" *ngFor="let product of getDisplayedProducts('toysAndMore')">
+      <img [src]="product.imageUrl" alt="Product Image">
+      <h3>{{ product.name }}</h3>
+      <p>Brand: {{ product.brand }}</p>
+      <p>Price: <del>{{ product.price }}</del><span class="price-gap"> Dis.Price:  </span> <span class="discounted-price">{{ product.discountedPrice }}</span></p>
+      <p class="offer-details">{{ product.offerPercentage }}% off</p>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Best of Electronics</h2>
+    <button (click)="toggleShowAll('bestOfElectronics')">View All</button>
+    <div class="product" *ngFor="let product of getDisplayedProducts('bestOfElectronics')">
+      <img [src]="product.imageUrl" alt="Product Image">
+      <h3>{{ product.name }}</h3>
+      <p>Brand: {{ product.brand }}</p>
+      <p>Price: <del>{{ product.price }}</del> <span class="price-gap"> Dis.Price:  </span><span class="discounted-price">{{ product.discountedPrice }}</span></p>
+      <p class="offer-details">{{ product.offerPercentage }}% off</p>
     </div>
   </div>
 </section>
 
 
+ 
+  
+  <section class="footer">
+    <!-- About footer section -->
+    <div class="footer-section">
+      <h3>About</h3>
+      <a href="#">Contact Us</a><br>
+      <a href="#">About Us</a><br>
+      <a href="#">Corporate Information</a>
+    </div>
+  
+    <!-- Help footer section -->
+    <div class="footer-section">
+      <h3>Help</h3>
+      <a href="#">Payments</a><br>
+      <a href="#">Shipping</a><br>
+      <a href="#">Cancellation and Returns</a><br>
+      <a href="#">FAQ</a><br>
+      <a href="#">Infringement</a>
+    </div>
+  
+    <!-- Consumer Policy footer section -->
+    <div class="footer-section">
+      <h3>Consumer Policy</h3>
+      <a href="#">Cancellation and Returns</a><br>
+      <a href="#">Terms of Use</a>
+    </div>
+  
+    <!-- Social footer section -->
+    <div class="footer-section">
+      <h3>Social</h3>
+      <div class="social-icons">
+        <a href="#"><span class="icon">📘</span></a><br>
+        <a href="#"><span class="icon">🐦</span></a><br>
+        <a href="#"><span class="icon">📺</span></a>
+      </div>
+    </div>
+  </section>
+  
+  
+  
