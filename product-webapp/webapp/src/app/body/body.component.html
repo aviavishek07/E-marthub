@@ -91,9 +91,9 @@
 <!-- ... Existing code ... -->
 
 
-<!-- <section class="seller-dashboard">
-   
-    <div class="add-product-container">
+<!--<section class="seller-dashboard">
+
+  <div class="add-product-container">
       <div>
         <label for="item">Item:</label>
         <input id="item" type="text" #newItem>
@@ -125,45 +125,33 @@
       <label for="descriptionSearch">Search by Description:</label>
       <input id="descriptionSearch" type="text" [(ngModel)]="searchDescription" placeholder="Enter description">
     </div> -->
-<!-- <div class="product-container">
-      <div class="product" *ngFor="let product of products | filter: searchCategory: searchSubcategory: searchDescription; let i = index">
-        <div class="product-info">
-          <div class="product-item">{{product.item}}</div>
-          <div class="product-category">{{product.category}}</div>
-          <div class="product-subcategory">{{product.subcategory}}</div>
-          <div class="product-description">{{product.description}}</div>
-        </div>
-        <div class="product-actions">
-          <button class="edit-btn" (click)="editProduct(i,product)">Edit</button>
-          <button class="delete-btn" (click)="deleteProduct(i)">Delete</button>
-        </div>
-      </div>
-    </div> -->
 
 
-<!-- <div class="edit-modal" [class.active]="showEditModal">
-        <div class="edit-modal-content">
-          <h3>Edit Product</h3>
-          <div>
-            <label for="editItem">Item:</label>
-            <input id="editItem" type="text" [(ngModel)]="editedProduct.item">
-          </div>
-          <div>
-            <label for="editCategory">Category:</label>
-            <input id="editCategory" type="text" [(ngModel)]="editedProduct.category">
-          </div>
-          <div>
-            <label for="editSubcategory">Subcategory:</label>
-            <input id="editSubcategory" type="text" [(ngModel)]="editedProduct.subcategory">
-          </div>
-          <div>
-            <label for="editDescription">Description:</label>
-            <input id="editDescription" type="text" [(ngModel)]="editedProduct.description">
-          </div>
-          <button (click)="saveEdit()">Save</button>
-          <button (click)="cancelEdit()">Cancel</button>
-        </div>
-      </div> -->
+
+
+<div class="edit-modal" [class.active]="showEditModal">
+  <div class="edit-modal-content">
+    <h3>Edit Product</h3>
+    <div>
+      <label for="editItem">Item:</label>
+      <input id="editItem" type="text" [(ngModel)]="editedProduct.item">
+    </div>
+    <div>
+      <label for="editCategory">Category:</label>
+      <input id="editCategory" type="text" [(ngModel)]="editedProduct.category">
+    </div>
+    <div>
+      <label for="editSubcategory">Subcategory:</label>
+      <input id="editSubcategory" type="text" [(ngModel)]="editedProduct.subcategory">
+    </div>
+    <div>
+      <label for="editDescription">Description:</label>
+      <input id="editDescription" type="text" [(ngModel)]="editedProduct.description">
+    </div>
+    <button (click)="saveEdit()">Save</button>
+    <button (click)="cancelEdit()">Cancel</button>
+  </div>
+</div>
 
 <!-- </section> -->
 <section class="product-list">
@@ -194,8 +182,8 @@
       <td><img [src]="product.image" alt="Product Image" width="50"></td>
 
       <td>
-        <i class="fa fa-edit" (click)="editProductModal(product)"></i>
-        <i class="fa fa-trash" (click)="deleteProduct(i)"></i>
+        <b class="fa fa-edit" (click)="editProductModal(product)"><strong>edit--</strong></b>
+        <b class="fa fa-trash" (click)="deleteProduct(i)"><strong>delete</strong></b>
       </td>
     </tr>
   </table>
