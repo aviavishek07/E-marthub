@@ -1,5 +1,8 @@
 // body.component.ts
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductPreviewDialogComponent } from 'src/app/product-preview-dialog/product-preview-dialog.component';
+
 
 interface Product {
   item: string;
@@ -16,6 +19,7 @@ interface Product {
   sellingPrice: number;
   discount: number;
   mrp: number;
+  stockQuantity: string;
 }
 
 @Component({
@@ -24,6 +28,81 @@ interface Product {
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent {
+
+  // Boolean flag to show/hide confirmation modal
+  showConfirmModal: boolean = false;
+  // Boolean flag to show/hide preview section
+  showPreview: boolean = false;
+
+  // Method to toggle the preview section
+
+
+  constructor(private dialog: MatDialog) { }
+
+  // ...
+
+  togglePreview() {
+    console.log('this.newProduct:', this.newProduct); // Check if data is correct
+    if (this.showPreview) {
+      const dialogRef = this.dialog.open(ProductPreviewDialogComponent, {
+        data: this.newProduct
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        // Handle any actions after the dialog is closed if needed
+      });
+    }
+    this.showPreview = !this.showPreview;
+  }
+
+
+  // Method to handle the form submission and show the confirmation modal
+  confirmAddProduct() {
+
+
+
+
+
+    this.showConfirmModal = true;
+
+  }
+
+  // Method to actually add the product to the list
+  addConfirmedProduct() {
+    // Add your product addition logic here
+    this.addProduct(
+      this.newProduct.item,
+      this.newProduct.category,
+      this.newProduct.subcategory,
+      this.newProduct.description,
+      this.newProduct.stockQuantity
+    );
+
+    // Reset the form and close the confirmation modal
+    this.resetForm();
+    this.showConfirmModal = false;
+  }
+
+  // Method to reset the form fields
+  resetForm() {
+    this.newProduct = {
+      item: '',
+      category: '',
+      subcategory: '',
+      description: '',
+      stockQuantity: '',
+      date: '',
+      time: '',
+      buyer: '',
+      status: '',
+      image: '',
+      productName: '',
+      brand: '',
+      sellingPrice: 0,
+      discount: 0,
+      mrp: 0
+    };
+  }
   products: Product[] = [];
   editedProduct: Product = {} as Product;
   searchCategory: string = '';
@@ -37,6 +116,7 @@ export class BodyComponent {
     category: '',
     subcategory: '',
     description: '',
+    stockQuantity: '',
     date: '',
     time: '',
     buyer: '',
@@ -56,6 +136,7 @@ export class BodyComponent {
       category: newCategory,
       subcategory: newSubcategory,
       description: newDescription,
+      stockQuantity: '',
       date: new Date().toLocaleDateString(),
       time: new Date().toLocaleTimeString(),
       buyer: 'New Buyer',

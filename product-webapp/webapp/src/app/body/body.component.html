@@ -52,15 +52,41 @@
         </div>
       </mat-step>
     </mat-horizontal-stepper>
+
     <button class="add-product-btn"
       (click)="addProduct(newItem.value, newCategory.value, newSubcategory.value, newDescription.value, newStockQuantity.value)">ADD
       PRODUCT</button>
+    <!-- <button class="add-product-btn" (click)="togglePreview()">Preview</button> -->
+    <button class="add-product-btn" (click)="confirmAddProduct()">CONFIRM
+      ADD PRODUCT</button>
   </div>
-  <div class="search-container">
+  <!-- <div class="search-container">
     <label for="categorySearch">Search by Category:</label>
     <input id="categorySearch" type="text" [(ngModel)]="searchCategory" placeholder="Enter category">
-  </div>
+  </div> -->
 </section>
+
+<!-- ... Other content ... -->
+
+<!-- Confirmation Modal -->
+<div class="confirmation-modal" *ngIf="showConfirmModal">
+  <div class="modal-content">
+    <h3>Confirm Add Product</h3>
+    <!-- Display product details for confirmation -->
+    <p><strong>Item:</strong> {{ newProduct.item }}</p>
+    <p><strong>Category:</strong> {{ newProduct.category }}</p>
+    <p><strong>Subcategory:</strong> {{ newProduct.subcategory }}</p>
+    <p><strong>Description:</strong> {{ newProduct.description }}</p>
+    <!-- Add more fields as needed -->
+
+    <!-- Confirm and Cancel buttons -->
+    <div class="modal-buttons">
+      <button class="confirm-btn" (click)="addConfirmedProduct()">Confirm</button>
+      <button class="cancel-btn" (click)="showConfirmModal = false">Cancel</button>
+    </div>
+  </div>
+</div>
+
 
 <!-- ... Existing code ... -->
 
