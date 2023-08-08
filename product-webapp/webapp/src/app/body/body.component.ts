@@ -11,6 +11,11 @@ interface Product {
   buyer: string;
   status: string;
   image: string;
+  productName: string;
+  brand: string;
+  sellingPrice: number;
+  discount: number;
+  mrp: number;
 }
 
 @Component({
@@ -23,11 +28,29 @@ export class BodyComponent {
   editedProduct: Product = {} as Product;
   searchCategory: string = '';
   searchSubcategory: string = '';
-  searchDescription: string = ''; 
+  searchDescription: string = '';
 
   showEditModal: boolean = false;
-  
-  addProduct(newItem: string, newCategory: string, newSubcategory: string, newDescription: string) {
+  // Declare newProduct object here
+  newProduct: Product = {
+    item: '',
+    category: '',
+    subcategory: '',
+    description: '',
+    date: '',
+    time: '',
+    buyer: '',
+    status: '',
+    image: '',
+    productName: '',
+    brand: '',
+    sellingPrice: 0,
+    discount: 0,
+    mrp: 0
+  };
+
+  addProduct(newItem: string, newCategory: string, newSubcategory: string, newDescription: string, newStockQuantityInput: string) {
+
     const newProduct: Product = {
       item: newItem,
       category: newCategory,
@@ -37,10 +60,19 @@ export class BodyComponent {
       time: new Date().toLocaleTimeString(),
       buyer: 'New Buyer',
       status: 'Processing',
-      image: 'path_to_your_image.png'
+      image: 'path_to_your_image.png',
+      productName: this.newProduct.productName,
+      brand: this.newProduct.brand,
+      sellingPrice: this.newProduct.sellingPrice,
+      discount: this.newProduct.discount,
+      mrp: this.newProduct.mrp
     };
 
     this.products.unshift(newProduct);
+  }
+  handleImageUpload(event: any) {
+    const file = event.target.files[0];
+    // Implement logic to handle image upload, e.g., save image URL
   }
 
   deleteProduct(index: number) {
@@ -74,7 +106,7 @@ export class BodyComponent {
     this.clearEditFields();
   }
 
-   clearEditFields() {
+  clearEditFields() {
     this.editedProduct = {} as Product;
   }
 
