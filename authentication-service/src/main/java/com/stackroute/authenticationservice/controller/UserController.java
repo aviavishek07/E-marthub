@@ -1,13 +1,13 @@
 package com.stackroute.authenticationservice.controller;
 
+import com.stackroute.authenticationservice.exception.UserAlreadyExistsException;
+import com.stackroute.authenticationservice.exception.UserNotFoundException;
 import com.stackroute.authenticationservice.model.User;
-import com.stackroute.authenticationservice.repository.UserRepository;
 import com.stackroute.authenticationservice.service.UserServiceImpl;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,22 +23,33 @@ public class UserController {
 
     @PostMapping("register")
     public ResponseEntity<?> registerUser(@RequestBody User user){
-        return new ResponseEntity<User>(service.registerUser(user), HttpStatus.CREATED);
+//        return new ResponseEntity<User>(service.registerUser(user), HttpStatus.CREATED);
+        try {
+            User user1 = service.registerUser(user);
+            return new ResponseEntity<User>(user1, HttpStatus.CREATED);
+        } catch (UserAlreadyExistsException e) {
+            return new ResponseEntity<String>("User Already Exists in Database", HttpStatus.CONFLICT);
+        }
     }
 
     @PostMapping("login")
     public ResponseEntity<?> loginUser(@RequestBody User user){
-        boolean result = service.validateUser(user);
-        if(result){
-            String  token = generateToken(user);
-            HashMap hashMap = new HashMap();
-            hashMap.put("token",token);
-            return new ResponseEntity<HashMap>(hashMap,HttpStatus.OK);
+        try {
+            boolean result = service.validateUser(user);
+            if(result){
+                String  token = generateToken(user);
+                HashMap hashMap = new HashMap();
+                hashMap.put("token",token);
+                return new ResponseEntity<HashMap>(hashMap,HttpStatus.OK);
 
+            }
+            else {
+                return new ResponseEntity<String>("Invalid Credentails", HttpStatus.UNAUTHORIZED);
+            }
+        } catch (UserNotFoundException e) {
+            return new ResponseEntity<String>("User not found in the database", HttpStatus.CONFLICT);
         }
-        else {
-            return new ResponseEntity<String>("Invalid Credentails", HttpStatus.UNAUTHORIZED);
-        }
+
     }
 
     private String generateToken(User user){
