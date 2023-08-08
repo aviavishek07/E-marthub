@@ -13,10 +13,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import { RegistrationComponent } from './registration/registration.component';
 
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent
     HomeComponent,
     BodyComponent,
     LoginComponent,
@@ -26,6 +28,7 @@ import { RegistrationComponent } from './registration/registration.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SlickCarouselModule
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
