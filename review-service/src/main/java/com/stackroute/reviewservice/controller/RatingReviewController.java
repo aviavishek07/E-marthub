@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.SimpleTimeZone;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("customerRatingReview")
@@ -23,6 +24,11 @@ public class RatingReviewController {
     @PostMapping("addRatingReview")
     public ResponseEntity<?> addRatingReview(@RequestBody RatingReview ratingReview){
         try {
+           ////// ratingReview.setRatingId(UUID.randomUUID().toString());
+            ////// here is getting unique rating ID
+
+            ratingReview.setRatingId(ratingReview.customerId+ratingReview.productId);
+
             RatingReview ratingReview1= ratingReviewService.addRatingReview(ratingReview);
             return new ResponseEntity<>("Rating Added Successfully", HttpStatus.OK);
         } catch (CustomerRatingReviewAlreadyExists e) {
