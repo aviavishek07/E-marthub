@@ -1,18 +1,23 @@
-<!-- header.component.html -->
 <header>
-    <div class="logo">E-Marthub</div>
-    <div class="search-bar">
-      <input type="text" placeholder="Search...">
-    </div>
-    <div class="icons">
-      <i class="fa fa-bell"></i> <!-- Notification icon -->
-      <div class="login-icon">
-        <i class="fa fa-user"></i> <!-- Login icon -->
-        <div class="login-popup">
-          <!-- Add your login popup content here -->
-          <!-- For example, login form or profile links -->
+  <div class="logo">E-Marthub</div>
+  <div class="search-bar">
+    <input type="text" placeholder="Search...">
+  </div>
+  <div class="icons">
+    <i class="fa fa-bell"></i>
+    <div class="login-icon">
+      <i class="fa fa-user"></i>
+      <div class="login-popup">
+        <button class="login-button" (click)="toggleProfileDropdown()">Login</button>
+        <div class="profile-icon" *ngIf="showProfileDropdown">
+          <i class="fa fa-user-circle"></i>
+          <div class="profile-dropdown">
+            <div>{{ sellerName }}</div>
+            <div>{{ sellerEmail }}</div>
+            <button (click)="signOut()">Sign Out</button>
+          </div>
         </div>
       </div>
     </div>
-  </header>
-  
+  </div>
+</header>

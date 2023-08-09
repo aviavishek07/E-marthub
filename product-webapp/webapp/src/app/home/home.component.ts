@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CarouselConfig } from 'ngx-bootstrap/carousel';
+
+import { SlickCarouselComponent } from 'ngx-slick-carousel'
 
 interface Product {
   name: string;
@@ -22,6 +23,37 @@ interface CategoryProductMap {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+
+  banners = [
+    { imageUrl: 'assets/images/product1.jpg' },
+    { imageUrl: 'assets/images/product2.jpg' },
+    { imageUrl: 'assets/images/product3.jpg' },
+    // Add more banner objects as needed
+  ];
+
+
+  carouselConfig = {
+    autoplay: true,
+    autoplaySpeed: 5000,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,  // Add navigation arrows
+    prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+    nextArrow: '<button type="button" class="slick-next">Next</button>',
+    dots: true,   // Add navigation dots
+  };
+
+  showOffersAndDeals: boolean = false;
+
+  showOffersAndDealsPopup() {
+    this.showOffersAndDeals = true;
+  }
+
+  closeOffersAndDealsPopup() {
+    this.showOffersAndDeals = false;
+  }
   // Placeholder method for fetching search suggestions
   getSearchSuggestions(searchTerm: string): string[] {
     // Implement logic to fetch search suggestions based on the searchTerm
@@ -70,17 +102,17 @@ export class HomeComponent implements OnInit {
       imageUrl: 'assets/images/product6.jpg'
     },
     {
-      name: 'Dairy Milk Chocklate',
+      name: 'Cute Teddy',
       price: 18,
       brand: "c",
-      imageUrl: 'assets/images/product7.jpg'
+      imageUrl: 'assets/images/product12.jpg'
     },
 
     {
-      name: 'Smart Watches',
+      name: 'Cute Teddy 2',
       price: 18,
       brand: "d",
-      imageUrl: 'assets/images/product16.jpg'
+      imageUrl: 'assets/images/product11.jpg'
     },
 
 
