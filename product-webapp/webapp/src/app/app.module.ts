@@ -14,6 +14,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { RegistrationComponent } from './registration/registration.component';
 
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { SellerComponent } from './seller/seller.component';
+import { EditProductDialogComponent } from './seller/edit-product-dialog/edit-product-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     BodyComponent,
     LoginComponent,
     RegisterComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    SellerComponent,
+    EditProductDialogComponent
   ],
   imports: [
     BrowserModule,
