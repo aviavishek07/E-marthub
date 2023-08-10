@@ -1,0 +1,262 @@
+<header>
+    <div class="logo">E-Marthub</div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+    </div>
+    <div class="icons">
+        <i class="fa fa-bell"></i>
+        <div class="login-icon">
+            <i class="fa fa-user"></i>
+            <div class="login-popup">
+                <button class="login-button" (click)="toggleProfileDropdown()">Login</button>
+                <div class="profile-icon" *ngIf="showProfileDropdown">
+                    <i class="fa fa-user-circle"></i>
+                    <div class="profile-dropdown">
+                        <div>{{ sellerName }}</div>
+                        <div>{{ sellerEmail }}</div>
+                        <button (click)="signOut()">Sign Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="create-button">
+    <!-- <button mat-raised-button color="primary" (click)="openCreateDialog()">Add Products</button> -->
+    <button (click)="openCreateDialog()" class="btn">Add Products</button>
+</div>
+<ng-container *ngIf="isDialogOpen">
+    <div class="dialog-overlay">
+        <div class="dialog">
+
+            <h2>Create Product</h2>
+            <form (submit)="createProduct()">
+                <label for="productId">Product ID:</label>
+                <input type="text" id="productId" name="productId" [(ngModel)]="newProduct.productId" required>
+
+
+
+
+
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName" [(ngModel)]="newProduct.productName" required>
+
+
+                <label for="productPrice">Product Price:</label>
+                <input type="number" id="productPrice" name="productPrice" [(ngModel)]="newProduct.productPrice"
+                    required>
+
+                <label for="brand">Brand:</label>
+                <input type="text" id="brand" name="brand" [(ngModel)]="newProduct.brand" required>
+
+                <label for="productDescription">Product Description:</label>
+                <textarea id="productDescription" name="productDescription" [(ngModel)]="newProduct.productDescription"
+                    required></textarea>
+
+                <label for="stockQuantity">Stock Quantity:</label>
+                <input type="number" id="stockQuantity" name="stockQuantity" [(ngModel)]="newProduct.stockQuantity"
+                    required>
+
+                <label for="mrp">MRP:</label>
+                <input type="number" id="mrp" name="mrp" [(ngModel)]="newProduct.mrp" required>
+
+                <label for="sellingPrice">Selling Price:</label>
+                <input type="number" id="sellingPrice" name="sellingPrice" [(ngModel)]="newProduct.sellingPrice"
+                    required>
+
+                <label for="productImage">Product Image:</label>
+                <input type="file" accept="image/*" id="productImage" name="productImage"
+                    (change)="handleImageChange($event)" required>
+
+
+                <!-- Add input fields for product details -->
+                <button type="submit">Confirm</button>
+                <button type="button" (click)="closeDialog()">Cancel</button>
+            </form>
+        </div>
+    </div>
+</ng-container>
+
+
+<ng-container *ngIf="isSuccessPopupVisible">
+    <div class="popup-overlay">
+        <div class="popup">
+            <p>Product successfully added!</p>
+            <button (click)="closeSuccessPopup()">OK</button>
+        </div>
+    </div>
+</ng-container>
+
+<div class="product-list">
+    <h2>Your Products</h2>
+    <ul>
+        <li *ngFor="let product of getProducts()">
+            <p><strong>Product Name:</strong> {{ product.productName }}</p>
+            <p><strong>Product Price:</strong> {{ product.productPrice }}</p>
+            <p><strong>Stock Quantity:</strong> {{ product.stockQuantity }}</p>
+            <p><strong>MRP:</strong> {{ product.mrp }}</p>
+            <p><strong>Selling Price:</strong> {{ product.sellingPrice }}</p>
+            <p><strong>Product Description:</strong> {{ product.productDescription }}</p>
+            <p><strong>Brand:</strong> {{ product.brand }}</p>
+            <p><strong>Product ID:</strong> {{ product.productId }}</p>
+            <p><strong>Product Image:</strong> <img [src]="product.productImage" alt="{{ product.productName }}" /></p>
+            <!-- Add more product details as needed -->
+
+            <!-- <button (click)="editProduct(product)">Edit</button>
+            <button (click)="deleteProduct(product)">Delete</button> -->
+
+            <button class="icon-button" mat-icon-button (click)="onEdit(product)"><mat-icon>launch</mat-icon></button>
+            <button class="icon-button warn" mat-icon-button color="warn"
+                (click)="onDelete(product.productId)"><mat-icon>delete_outline</mat-icon></button>
+        </li>
+    </ul>
+</div>
+
+<ng-container *ngIf="showEditModal">
+    <div class="dialog-overlay">
+        <div class="dialog">
+            <h2>Edit Product</h2>
+            <form (submit)="saveEditProduct()">
+                <label for="productId">Product ID:</label>
+                <input type="text" id="productId" name="productId" [(ngModel)]="editedProduct.productId" required>
+
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName" [(ngModel)]="editedProduct.productName" required>
+
+                <label for="productPrice">Product Price:</label>
+                <input type="number" id="productPrice" name="productPrice" [(ngModel)]="editedProduct.productPrice"
+                    required>
+
+                <label for="brand">Brand:</label>
+                <input type="text" id="brand" name="brand" [(ngModel)]="editedProduct.brand" required>
+
+                <label for="productDescription">Product Description:</label>
+                <textarea id="productDescription" name="productDescription"
+                    [(ngModel)]="editedProduct.productDescription" required></textarea>
+
+                <label for="stockQuantity">Stock Quantity:</label>
+                <input type="number" id="stockQuantity" name="stockQuantity" [(ngModel)]="editedProduct.stockQuantity"
+                    required>
+
+                <label for="mrp">MRP:</label>
+                <input type="number" id="mrp" name="mrp" [(ngModel)]="editedProduct.mrp" required>
+
+                <label for="sellingPrice">Selling Price:</label>
+                <input type="number" id="sellingPrice" name="sellingPrice" [(ngModel)]="editedProduct.sellingPrice"
+                    required>
+
+                <label for="productImage">Product Image:</label>
+                <input type="file" accept="image/*" id="productImage" name="productImage"
+                    (change)="handleImageChange($event)">
+
+                <button type="submit">Save</button>
+                <button type="button" (click)="closeDialog()">Cancel</button>
+            </form>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="showDeleteConfirmation">
+    <div class="dialog-overlay">
+        <div class="dialog">
+            <h2>Confirm Delete Product</h2>
+            <p>Are you sure you want to delete this product?</p>
+            <div class="modal-buttons">
+                <button class="confirm-btn" (click)="confirmDelete()">Confirm</button>
+                <button class="cancel-btn" (click)="cancelDelete()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+
+<div class="confirmation-modal" *ngIf="showConfirmModal">
+    <div class="modal-content">
+        <h3>Confirm Edit Product</h3>
+        <p><strong>Product Name:</strong> {{ editedProduct.productName }}</p>
+        <p><strong>Product Price:</strong> {{ editedProduct.productPrice }}</p>
+        <p><strong>Brand:</strong> {{ editedProduct.brand }}</p>
+        <p><strong>Product Description:</strong> {{ editedProduct.productDescription }}</p>
+        <p><strong>Stock Quantity:</strong> {{ editedProduct.stockQuantity }}</p>
+        <p><strong>MRP:</strong> {{ editedProduct.mrp }}</p>
+        <p><strong>Selling Price:</strong> {{ editedProduct.sellingPrice }}</p>
+        <!-- Add more fields as needed -->
+
+        <!-- Add more fields here -->
+        <!-- For example: -->
+        <!-- <p><strong>Field Name:</strong> {{ editedProduct.fieldName }}</p> -->
+
+        <div class="modal-buttons">
+            <button class="confirm-btn" (click)="saveEditProduct()">Confirm</button>
+            <button class="cancel-btn" (click)="showConfirmModal = false">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Confirm Add Product Modal -->
+<div class="confirmation-modal" *ngIf="showConfirmModal">
+    <div class="modal-content">
+        <h3>Confirm Add Product</h3>
+        <!-- Display product details for confirmation -->
+        <p><strong>Product Name:</strong> {{ newProduct.productName }}</p>
+        <p><strong>Product Price:</strong> {{ newProduct.productPrice }}</p>
+        <p><strong>Brand:</strong> {{ newProduct.brand }}</p>
+        <p><strong>Product Description:</strong> {{ newProduct.productDescription }}</p>
+        <p><strong>Stock Quantity:</strong> {{ newProduct.stockQuantity }}</p>
+        <p><strong>MRP:</strong> {{ newProduct.mrp }}</p>
+        <p><strong>Selling Price:</strong> {{ newProduct.sellingPrice }}</p>
+        <!-- Add more fields as needed -->
+
+        <!-- Confirm and Cancel buttons -->
+        <div class="modal-buttons">
+            <button class="confirm-btn" (click)="addConfirmedProduct()">Confirm</button>
+            <button class="cancel-btn" (click)="showConfirmModal = false">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Product List -->
+<section class="product-list">
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Brand</th>
+            <th>Product Description</th>
+            <th>Stock Quantity</th>
+            <th>MRP</th>
+            <th>Selling Price</th>
+            <!-- Add more headers as needed -->
+            <th>Actions</th>
+        </tr>
+        <tr *ngFor="let product of products; let i = index">
+            <td>{{ product.productName }}</td>
+            <td>{{ product.productPrice }}</td>
+            <td>{{ product.brand }}</td>
+            <td style="
+            max-width: 200px;">{{ product.productDescription }}</td>
+            <td>{{ product.stockQuantity }}</td>
+            <td>{{ product.mrp }}</td>
+            <td>{{ product.sellingPrice }}</td>
+            <!-- Add more fields as needed -->
+
+            <td>
+                <button class="edit-btn" (click)="editProduct(product)">Edit</button>
+                <button class="delete-btn" (click)="deleteProduct(product)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<!-- Edit Product Modal -->
+<div class="edit-modal" [class.active]="showEditModal">
+    <!-- Edit product form fields -->
+    <!-- Add your form fields for editing product details here -->
+    <button (click)="saveEdit()">Save</button>
+    <button (click)="cancelEdit()">Cancel</button>
+</div>
