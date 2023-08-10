@@ -24,8 +24,10 @@ public class RatingReviewController {
     @PostMapping("addRatingReview")
     public ResponseEntity<?> addRatingReview(@RequestBody RatingReview ratingReview){
         try {
-           ////// ratingReview.setRatingId(UUID.randomUUID().toString());
+            ratingReview.setCustomerId(UUID.randomUUID().toString()); //////////////////Till I get real customer Id I will use this
             ////// here is getting unique rating ID
+
+            ratingReview.setProductId("Himalya_Neem_Facewash");  /////// Till I get Real product Id ; I will use this custom Id
 
             ratingReview.setRatingId(ratingReview.customerId+ratingReview.productId);
 
