@@ -8,6 +8,7 @@ const routes: Routes = [
     {path: 'registration', component: RegistrationComponent},
     {path: 'sellerDashboard', component: SellerDashboardComponent},
     {path: 'userProfile', component: UserProfileComponent},
+    {path: 'customerDashboard', component: CustomerDashboardComponent},
     {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
