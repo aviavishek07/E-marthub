@@ -1,53 +1,77 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { RouteService } from 'src/app/services/route.service';
+import { Role } from '../model/role';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   loginForm: FormGroup;
   userRole: string = ' ';
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private routeService: RouteService, private route:ActivatedRoute){
-    this.loginForm = this.formBuilder.group({
-      mailId:['', Validators.required],
-      password:['', Validators.required]
-    })
 
+  //performing validations for login form
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private routeService: RouteService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.loginForm = this.formBuilder.group({
+      mailId: ['', Validators.required],
+      password: ['', Validators.required],
+    });
   }
+
+  //for getting the user role
   ngOnInit() {
-    // Get the user role from the URL parameters
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.userRole = params['role'];
     });
   }
 
-  loginUser(loginForm: FormGroup){
+
+  //authenticating the user after login and directing the user based on role
+  loginUser(loginForm: FormGroup) {
     console.log(this.loginForm.value);
-    this.authService.authenticateUser(this.loginForm.value).subscribe(resp => {
-      const userRole = resp['role'];
-      sessionStorage.setItem('bearerToken', resp['token'])
-      console.log(resp['token']);
-        // Redirect based on user's role
-      if (userRole === 'Seller') {
-      // Redirect to seller dashboard
-        this.routeService.routeToSellerDashboard();
-      } else if (userRole === 'Customer') {
-      // Redirect to customer dashboard
-        this.routeService.routeToCustomerDashboard();
-      } else {
-      // Handle other user roles or cases (if needed)
-        alert('Unknown user role. Unable to redirect.');
+    const role = this.loginForm.value;
+    this.authService.authenticateUser(this.loginForm.value).subscribe(
+      (resp) => {
+        console.log(this.loginForm.value.mailId);
+        this.authService.getUserRole(this.loginForm.value.mailId).subscribe(
+          data => {
+            console.log(data);
+            const r = data;
+            if(data === 'Customer'){
+              this.router.navigate(['/customerDashboard']);
+              localStorage.setItem('mail', this.loginForm.value.mailId);
+              this.authService.getUserDetails(this.loginForm.value.mailId).subscribe(
+                details => {
+                  console.log(details.firstName);
+                }
+              )
+            }
+            else{
+              this.router.navigate(['/sellerDashboard']);
+            }
+           }//,err => {
+          //   alert('Role not found');
+          // }
+        )
+        sessionStorage.setItem('bearerToken', resp['token']);
+        console.log(resp['token']);
+
+      },
+      (err) => {
+        alert('Invalid Credentials');
       }
-    }, err => {
-      alert("Invalid Credentials");
-    })
-    
+    );
   }
 
 }
