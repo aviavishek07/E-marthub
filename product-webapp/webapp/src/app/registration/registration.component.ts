@@ -13,6 +13,7 @@ export class RegistrationComponent {
   saveForm: FormGroup;
   roles = Object.values(Role);
 
+//different validations implemented for all the input fileds
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router){
     this.saveForm = this.formBuilder.group({
       firstName:['', Validators.compose([Validators.required, Validators.maxLength(50), Validators.pattern("[a-zA-Z][a-zA-Z]+")])],
@@ -22,15 +23,15 @@ export class RegistrationComponent {
       mobileNo:['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}")]],
       role:[null, Validators.required]
     })
-
   }
 
 
+//This method is used for registering and also directs to the login page
   registerUser(saveForm: FormGroup){
     console.log(saveForm.value);
     this.authService.registerUser(this.saveForm.value).subscribe(resp => {
-      alert("Data Saved");
       this.saveForm.reset();
+      this.router.navigate(['/login']);
     })
   }
 
