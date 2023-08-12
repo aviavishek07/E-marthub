@@ -11,4 +11,9 @@ public interface UserServiceDao {
 
     //service for validating the user
     boolean validateUser(User user) throws UserNotFoundException;
+
+
+    public User getUserRoleByMailId(String mailId);
+
+    public User getUserByMail(String mailId);
 }

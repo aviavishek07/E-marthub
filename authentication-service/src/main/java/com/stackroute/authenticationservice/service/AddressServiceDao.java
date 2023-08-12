@@ -7,4 +7,5 @@ import java.util.List;
 public interface AddressServiceDao {
     Address addAddress(Address address);
     List<Address> getAllAddresses();
+    List<Address> findAddressByEmailId(String emailId);
 }

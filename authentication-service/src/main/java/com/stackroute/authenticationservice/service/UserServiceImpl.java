@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserServiceDao{
 
     @Override
     public User registerUser(User user) throws UserAlreadyExistsException{
-        Optional<User> optionalUser = repository.findById(user.getMailId());
+        Optional<User> optionalUser = repository.findById(user.getUserId());
         if(optionalUser.isEmpty()){
             User user1 = repository.save(user);
             return user1;
@@ -37,6 +37,16 @@ public class UserServiceImpl implements UserServiceDao{
         else {
             return true;
         }
+    }
+
+    @Override
+    public User getUserRoleByMailId(String mailId) {
+        return repository.findByMailId(mailId);
+    }
+
+    @Override
+    public User getUserByMail(String mailId) {
+        return repository.findByMailId(mailId);
     }
 }
 

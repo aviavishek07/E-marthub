@@ -27,4 +27,10 @@ public class AddressController {
         List<Address> addressList = service.getAllAddresses();
         return new ResponseEntity<List>(addressList, HttpStatus.OK);
     }
+
+    @GetMapping("a/{emailId}")
+    public ResponseEntity<?> viewAddressByEmailId(@PathVariable String emailId){
+        List<Address> addressList = service.findAddressByEmailId(emailId);
+        return new ResponseEntity<List>(addressList, HttpStatus.OK);
+    }
 }

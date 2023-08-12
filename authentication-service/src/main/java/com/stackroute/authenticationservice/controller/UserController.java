@@ -61,6 +61,20 @@ public class UserController {
                 .signWith(SignatureAlgorithm.HS256,"emartHub").compact();
     }
 
+    @GetMapping("userdetails/{mail}")
+    public ResponseEntity<User> getUserByMail(@PathVariable String mail){
+        User user = service.getUserByMail(mail);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
 
+
+    @GetMapping("role/{mail}")
+    public ResponseEntity<String> getRoleByMailId(@PathVariable String mail){
+        User user = service.getUserRoleByMailId(mail);
+        if(user == null){
+            return new ResponseEntity<String>("Record not found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<String>(user.getRole(), HttpStatus.OK);
+    }
 
 }

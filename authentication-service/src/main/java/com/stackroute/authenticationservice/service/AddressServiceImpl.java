@@ -21,4 +21,9 @@ public class AddressServiceImpl implements AddressServiceDao{
     public List<Address> getAllAddresses() {
         return repository.findAll();
     }
+
+    @Override
+    public List<Address> findAddressByEmailId(String emailId) {
+        return repository.findByEmailId(emailId);
+    }
 }
