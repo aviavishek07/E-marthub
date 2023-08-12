@@ -14,16 +14,16 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SellerComponent } from './seller/seller.component';
 import { EditProductDialogComponent } from './seller/edit-product-dialog/edit-product-dialog.component';
 import { UserProfileComponent} from './user-profile/user-profile.component';
-
+import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    BodyComponent,
     LoginComponent,
     RegistrationComponent,
     SellerComponent,
+    CustomerDashboardComponent,
     EditProductDialogComponent,
     UserProfileComponent,
     MycartComponent
