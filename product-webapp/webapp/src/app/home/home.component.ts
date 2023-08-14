@@ -50,6 +50,7 @@ export class HomeComponent implements OnInit {
   showOffersAndDealsPopup() {
     this.showOffersAndDeals = true;
   }
+  
 
   closeOffersAndDealsPopup() {
     this.showOffersAndDeals = false;
@@ -92,26 +93,26 @@ export class HomeComponent implements OnInit {
     {
       name: 'Ponds baby powder',
       price: 25,
-      brand: "a",
+      brand: "Jhonson",
       imageUrl: 'assets/images/product5.jpg'
     },
     {
       name: 'Himalaya Facewash',
       price: 30,
-      brand: "b",
+      brand: "Himalaya",
       imageUrl: 'assets/images/product6.jpg'
     },
     {
       name: 'Cute Teddy',
       price: 18,
-      brand: "c",
+      brand: "Teddy",
       imageUrl: 'assets/images/product12.jpg'
     },
 
     {
       name: 'Cute Teddy 2',
       price: 18,
-      brand: "d",
+      brand: "TeddyS",
       imageUrl: 'assets/images/product11.jpg'
     },
 
@@ -141,44 +142,44 @@ export class HomeComponent implements OnInit {
     {
       name: 'Special Offer 1',
       price: 5,
-      brand: "a",
+      brand: "Casio",
       imageUrl: 'assets/images/product1.jpg'
     },
     {
       name: 'Special Offer 2',
       price: 10,
-      brand: "b",
+      brand: "Candles1",
       imageUrl: 'assets/images/product3.jpg'
     },
     {
       name: 'Special Offer 3',
       price: 15,
-      brand: "c",
+      brand: "Prestige",
       imageUrl: 'assets/images/product2.jpg'
     },
     // Add more offers and deals
   ];
   homeAndKitchenProducts: Product[] = [
     {
-      name: 'clocks',
+      name: 'Clocks',
       price: 10,
-      brand: "c",
+      brand: "Quartz",
       imageUrl:'assets/images/product1.jpg',
       offerPercentage: 22,
       discountedPrice:8
     },
     {
-      name: 'candles',
+      name: 'Candles',
       price: 20,
-      brand: "b",
+      brand: "Candles",
       imageUrl: 'assets/images/product2.jpg',
       offerPercentage: 24,
       discountedPrice:15
     },
     {
-      name: 'cookers',
+      name: 'Cookers',
       price: 15,
-      brand: "a",
+      brand: "Prestige",
       imageUrl: 'assets/images/product3.jpg',
       offerPercentage: 25,
       discountedPrice:11
@@ -190,7 +191,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Lipstics',
       price: 25,
-      brand: "b",
+      brand: "MAC cosmetics",
       imageUrl: 'assets/images/product4.jpg',
       offerPercentage: 20,
       discountedPrice:20
@@ -198,7 +199,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Ponds Baby Powder',
       price: 30,
-      brand: "d",
+      brand: "Powder",
       imageUrl: 'assets/images/product5.jpg',
       offerPercentage: 26,
       discountedPrice:25
@@ -206,7 +207,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Himalaya FaceWash',
       price: 18,
-      brand: "a",
+      brand: "HImalaya",
       imageUrl: 'assets/images/product6.jpg',
       offerPercentage: 22,
       discountedPrice:15
@@ -218,7 +219,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Dairy Milk Chocklate',
       price: 12,
-      brand: "d",
+      brand: "Dairy Milk",
       imageUrl: 'assets/images/product7.jpg',
       offerPercentage: 28,
       discountedPrice:8
@@ -226,7 +227,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Nuts',
       price: 8,
-      brand: "d",
+      brand: "nuts",
       imageUrl: 'assets/images/product8.jpg',
       offerPercentage: 20,
       discountedPrice:6
@@ -234,7 +235,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Almonds',
       price: 22,
-      brand: "c",
+      brand: "Almonds",
       imageUrl: 'assets/images/product9.jpg',
       offerPercentage: 25,
       discountedPrice:17
@@ -244,9 +245,9 @@ export class HomeComponent implements OnInit {
 
   toysAndMoreProducts: Product[] = [
     {
-      name: 'teddy',
+      name: 'Teddy',
       price: 40,
-      brand: "a",
+      brand: "Teddy",
       imageUrl: 'assets/images/product10.jpg',
       offerPercentage: 25,
       discountedPrice:35
@@ -254,7 +255,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Cute Teddy',
       price: 35,
-      brand: "d",
+      brand: "Teddy",
       imageUrl: 'assets/images/product11.jpg',
       offerPercentage: 20,
       discountedPrice:30
@@ -262,7 +263,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Baby Teddy',
       price: 28,
-      brand: "c",
+      brand: "Teddy",
       imageUrl: 'assets/images/product12.jpg',
       offerPercentage: 25,
       discountedPrice:26
@@ -274,7 +275,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Laptops',
       price: 50,
-      brand: "a",
+      brand: "Asus",
       imageUrl: 'assets/images/product14.jpg',
       offerPercentage: 24,
       discountedPrice:44
@@ -282,7 +283,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Watches',
       price: 60,
-      brand: "b",
+      brand: "Apple",
       imageUrl: 'assets/images/product15.jpg',
       offerPercentage: 24,
       discountedPrice:50
@@ -290,7 +291,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Smart Watches',
       price: 55,
-      brand: "d",
+      brand: "Samsung",
       imageUrl: 'assets/images/product16.jpg',
       offerPercentage: 24,
       discountedPrice:45
