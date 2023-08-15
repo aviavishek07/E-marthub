@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { SellerComponent } from './seller/seller.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { customerDashboard } from './customer/customer-dashboard.component';
+import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 import {MycartComponent} from './mycart/mycart.component'
 
 
