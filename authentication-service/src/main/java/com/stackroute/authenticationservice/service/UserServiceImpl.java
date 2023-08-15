@@ -18,12 +18,12 @@ public class UserServiceImpl implements UserServiceDao{
     @Override
     public User registerUser(User user) throws UserAlreadyExistsException{
         Optional<User> optionalUser = repository.findById(user.getUserId());
-        if(optionalUser.isEmpty()){
-            User user1 = repository.save(user);
-            return user1;
+        if(optionalUser.isPresent()){
+            throw new UserAlreadyExistsException("Duplicate email id found");
         }
         else {
-            throw new UserAlreadyExistsException();
+           User user1 = repository.save(user);
+            return user1;
         }
 //        return repository.save(user);
     }
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserServiceDao{
     public boolean validateUser(User user) throws UserNotFoundException {
         Optional<User> user1 = Optional.ofNullable(repository.findByMailIdAndPassword(user.getMailId(), user.getPassword()));
         if (user1.isEmpty()){
-            return false;
+           throw new UserNotFoundException("User is not found in the database");
         }
         else {
             return true;
@@ -40,13 +40,27 @@ public class UserServiceImpl implements UserServiceDao{
     }
 
     @Override
-    public User getUserRoleByMailId(String mailId) {
-        return repository.findByMailId(mailId);
+    public User getUserRoleByMailId(String mailId) throws UserNotFoundException{
+        Optional<User> optionalUser = Optional.ofNullable(repository.findByMailId(mailId));
+        if(optionalUser.isEmpty()){
+            throw new UserNotFoundException("Email id not found");
+        }
+        else {
+            User user1 = repository.findByMailId(mailId);
+            return user1;
+        }
     }
 
     @Override
-    public User getUserByMail(String mailId) {
-        return repository.findByMailId(mailId);
+    public User getUserByMail(String mailId)throws UserNotFoundException{
+        Optional<User> optionalUser = Optional.ofNullable(repository.findByMailId(mailId));
+        if(optionalUser.isEmpty()){
+            throw new UserNotFoundException("Email id not found");
+        }
+        else {
+            User user1 = repository.findByMailId(mailId);
+            return user1;
+        }
     }
 }
 

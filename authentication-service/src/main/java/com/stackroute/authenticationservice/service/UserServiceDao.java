@@ -13,7 +13,7 @@ public interface UserServiceDao {
     boolean validateUser(User user) throws UserNotFoundException;
 
 
-    public User getUserRoleByMailId(String mailId);
+    public User getUserRoleByMailId(String mailId) throws UserNotFoundException;
 
-    public User getUserByMail(String mailId);
+    public User getUserByMail(String mailId) throws UserNotFoundException;
 }

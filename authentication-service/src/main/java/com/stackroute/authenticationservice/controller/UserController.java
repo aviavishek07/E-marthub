@@ -22,7 +22,7 @@ public class UserController {
     UserServiceImpl service;
 
     @PostMapping("register")
-    public ResponseEntity<?> registerUser(@RequestBody User user){
+    public ResponseEntity<?> registerUser(@RequestBody User user) throws UserAlreadyExistsException{
 //        return new ResponseEntity<User>(service.registerUser(user), HttpStatus.CREATED);
         try {
             User user1 = service.registerUser(user);
@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<?> loginUser(@RequestBody User user){
+    public ResponseEntity<?> loginUser(@RequestBody User user) throws UserNotFoundException{
         try {
             boolean result = service.validateUser(user);
             if(result){
@@ -62,14 +62,18 @@ public class UserController {
     }
 
     @GetMapping("userdetails/{mail}")
-    public ResponseEntity<User> getUserByMail(@PathVariable String mail){
-        User user = service.getUserByMail(mail);
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+    public ResponseEntity<User> getUserByMail(@PathVariable String mail)  throws UserNotFoundException{
+        try {
+            User user = service.getUserByMail(mail);
+            return new ResponseEntity<User>(user, HttpStatus.OK);
+        } catch (UserNotFoundException e) {
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+        }
     }
 
 
     @GetMapping("role/{mail}")
-    public ResponseEntity<String> getRoleByMailId(@PathVariable String mail){
+    public ResponseEntity<String> getRoleByMailId(@PathVariable String mail) throws UserNotFoundException {
         User user = service.getUserRoleByMailId(mail);
         if(user == null){
             return new ResponseEntity<String>("Record not found", HttpStatus.NOT_FOUND);
